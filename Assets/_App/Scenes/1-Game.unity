@@ -1181,6 +1181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2668999994949428518, guid: 7b41dc2a1864d4460ba13f5beff8d495, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2950,6 +2954,10 @@ PrefabInstance:
     - target: {fileID: 2209662097977116769, guid: 6b611d67bfbb94d5ead7e02a217e88bd, type: 3}
       propertyPath: m_Name
       value: PotionMana
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524096369400678729, guid: 6b611d67bfbb94d5ead7e02a217e88bd, type: 3}
+      propertyPath: _amountToBeAdded
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -19,6 +19,12 @@ namespace _App.Game.Inventory
         public int MaxStackAmount;
 
         [HideInInspector] public int Amount;
+        //public int Amount;
+
+        public InventoryItem DuplicateItem()
+        {
+            return Instantiate(this);
+        }
     }
 
     public enum ItemType
