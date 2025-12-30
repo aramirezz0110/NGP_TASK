@@ -1,12 +1,15 @@
 using _App.Game.Inventory;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace _App.Game.UI.Inventory
 {
     public class InventorySlot : MonoBehaviour
     {
+        public static UnityAction<InteractionType, int> EventSlotInteraction;
+        
         public int Index { get; set; }
 
         [SerializeField] private Image _iconItem;
@@ -24,5 +27,18 @@ namespace _App.Game.UI.Inventory
             _iconItem.gameObject.SetActive(state);
             _backgroundAmount.SetActive(state);
         }
+
+        public void ClickSlot()
+        {
+            EventSlotInteraction?.Invoke(InteractionType.Click, Index);
+        }
+    }
+
+    public enum InteractionType
+    {
+        Click,
+        Use,
+        Equip,
+        Remove
     }
 }

@@ -1,12 +1,22 @@
+using System;
 using System.Collections.Generic;
 using _App.Game.Inventory;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace _App.Game.UI.Inventory
 {
     public class InventoryUI : MonoBehaviour
     {
+        [Header("Inventory description panel")]
+        [SerializeField] private GameObject _inventoryDescriptionPanel;
+        [SerializeField] private Image _iconItem;
+        [SerializeField] private TMP_Text _nameItem;
+        [SerializeField] private TMP_Text _descriptionItem;
+        
+        [Header("References")]
         [SerializeField] private InventorySlot _slotPrefab;
         [SerializeField] private Transform _slotParent;
         
@@ -17,6 +27,16 @@ namespace _App.Game.UI.Inventory
         private void Start()
         {
             InitializeInventory();
+        }
+        
+        private void OnEnable()
+        {
+            InventorySlot.EventSlotInteraction += SlotInteractionResponse;
+        }
+
+        private void OnDisable()
+        {
+            InventorySlot.EventSlotInteraction -= SlotInteractionResponse;
         }
 
         private void InitializeInventory()
@@ -41,6 +61,28 @@ namespace _App.Game.UI.Inventory
             else
             {
                 slot.ActivateSlotUI(false);
+            }
+        }
+
+        private void UpdateInventoryDescription(int index)
+        {
+            bool hasItem = _inventory.InventoryItems[index] is not null;
+            
+            if (hasItem)
+            {
+                _iconItem.sprite = _inventory.InventoryItems[index].Icon;
+                _nameItem.text = _inventory.InventoryItems[index].Name;
+                _descriptionItem.text = _inventory.InventoryItems[index].Description;
+            }
+            
+            _inventoryDescriptionPanel.SetActive(hasItem);
+        }
+
+        private void SlotInteractionResponse(InteractionType interactionType, int index)
+        {
+            if (interactionType == InteractionType.Click)
+            {
+                UpdateInventoryDescription(index);
             }
         }
     }

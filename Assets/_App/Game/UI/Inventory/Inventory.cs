@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _App.Game.Inventory;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace _App.Game.UI.Inventory
@@ -10,15 +11,17 @@ namespace _App.Game.UI.Inventory
     {
         [SerializeField] private int _slotsNumber = 24;
         public int SlotsNumber => _slotsNumber;
+        public InventoryItem[] InventoryItems => _inventoryItems;
         
+        [FormerlySerializedAs("_itemsInventory")]
         [Header("Items")]
-        [SerializeField] private InventoryItem[] _itemsInventory;
+        [SerializeField] private InventoryItem[] _inventoryItems;
         
         [Inject] private InventoryUI _inventoryUI;
 
         private void Start()
         {
-            _itemsInventory = new InventoryItem[_slotsNumber];
+            _inventoryItems = new InventoryItem[_slotsNumber];
         }
 
         public void AddItem(InventoryItem itemToAdd, int amountToAdd)
@@ -36,15 +39,15 @@ namespace _App.Game.UI.Inventory
                 {
                     for (int i = 0; i < indexes.Count; ++i)
                     {
-                        if (_itemsInventory[indexes[i]].Amount < itemToAdd.MaxStackAmount)
+                        if (_inventoryItems[indexes[i]].Amount < itemToAdd.MaxStackAmount)
                         {
-                            _itemsInventory[indexes[i]].Amount += amountToAdd;
-                            if (_itemsInventory[indexes[i]].Amount > itemToAdd.MaxStackAmount)
+                            _inventoryItems[indexes[i]].Amount += amountToAdd;
+                            if (_inventoryItems[indexes[i]].Amount > itemToAdd.MaxStackAmount)
                             {
-                                int difference = _itemsInventory[indexes[i]].Amount - itemToAdd.MaxStackAmount;
-                                _itemsInventory[indexes[i]].Amount = itemToAdd.MaxStackAmount;
+                                int difference = _inventoryItems[indexes[i]].Amount - itemToAdd.MaxStackAmount;
+                                _inventoryItems[indexes[i]].Amount = itemToAdd.MaxStackAmount;
                                 AddItem(itemToAdd, difference);
-                                _inventoryUI.DrawItemOnInventory(itemToAdd, _itemsInventory[indexes[i]].Amount, indexes[i]);
+                                _inventoryUI.DrawItemOnInventory(itemToAdd, _inventoryItems[indexes[i]].Amount, indexes[i]);
                                 return;
                             }
                         }
@@ -72,11 +75,11 @@ namespace _App.Game.UI.Inventory
         private List<int> CheckStock(string itemId)
         {
             List<int> itemIndexes = new List<int>();
-            for (int index = 0; index < _itemsInventory.Length; index++)
+            for (int index = 0; index < _inventoryItems.Length; index++)
             {
-                if (_itemsInventory[index] is not null)
+                if (_inventoryItems[index] is not null)
                 {
-                    if (_itemsInventory[index].Id == itemId)
+                    if (_inventoryItems[index].Id == itemId)
                     {
                         itemIndexes.Add(index);
                     }
@@ -88,12 +91,12 @@ namespace _App.Game.UI.Inventory
 
         private void AddItemInAvailableSlot(InventoryItem itemToAdd, int amountToAdd)
         {
-            for (int i = 0; i < _itemsInventory.Length; i++)
+            for (int i = 0; i < _inventoryItems.Length; i++)
             {
-                if (_itemsInventory[i] is null)
+                if (_inventoryItems[i] is null)
                 {
-                    _itemsInventory[i] = itemToAdd.DuplicateItem();
-                    _itemsInventory[i].Amount = amountToAdd;
+                    _inventoryItems[i] = itemToAdd.DuplicateItem();
+                    _inventoryItems[i].Amount = amountToAdd;
                     _inventoryUI.DrawItemOnInventory(itemToAdd, amountToAdd, i);
                     return;
                 }
