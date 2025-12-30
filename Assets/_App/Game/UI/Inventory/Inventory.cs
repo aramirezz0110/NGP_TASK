@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _App.Game.Inventory;
 using UnityEngine;
+using Zenject;
 
 namespace _App.Game.UI.Inventory
 {
@@ -12,6 +13,8 @@ namespace _App.Game.UI.Inventory
         
         [Header("Items")]
         [SerializeField] private InventoryItem[] _itemsInventory;
+        
+        [Inject] private InventoryUI _inventoryUI;
 
         private void Start()
         {
@@ -41,6 +44,8 @@ namespace _App.Game.UI.Inventory
                                 int difference = _itemsInventory[indexes[i]].Amount - itemToAdd.MaxStackAmount;
                                 _itemsInventory[indexes[i]].Amount = itemToAdd.MaxStackAmount;
                                 AddItem(itemToAdd, difference);
+                                _inventoryUI.DrawItemOnInventory(itemToAdd, _itemsInventory[indexes[i]].Amount, indexes[i]);
+                                return;
                             }
                         }
                     }
@@ -89,6 +94,7 @@ namespace _App.Game.UI.Inventory
                 {
                     _itemsInventory[i] = itemToAdd.DuplicateItem();
                     _itemsInventory[i].Amount = amountToAdd;
+                    _inventoryUI.DrawItemOnInventory(itemToAdd, amountToAdd, i);
                     return;
                 }
             }
