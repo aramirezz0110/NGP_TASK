@@ -10,10 +10,13 @@ namespace _App.Game.Gameplay.Character.Stats
 
         public float Health { get; protected set; }
 
-        private void Start()
+        protected virtual void Start()
         {
             Health = _initialHealth;
         }
+        
+        [ContextMenu("SIMULATE DAMAGE")]
+        public void SimulateDamage() => ReceiveDamage(10);
 
         public void ReceiveDamage(float amount)
         {

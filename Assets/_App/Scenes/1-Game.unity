@@ -1263,6 +1263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98141e07630a43edbe5c2c7aecfd5b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_App.Game.UI.Inventory.InventoryUIManager
+  _healthBar: {fileID: 805723990}
+  _healthText: {fileID: 1293004091}
+  _manaBar: {fileID: 1749324534}
+  _manaText: {fileID: 2039119873}
   _pausePanel: {fileID: 547134655}
   _inventoryPanel: {fileID: 56421538}
 --- !u!1 &764697898
@@ -1358,6 +1362,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b8467fc609604e45aafcc5b2974ef72, type: 3}
+--- !u!114 &805723990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7751437923910611375, guid: f9e977665c5254089a5a5a4831fbe5eb, type: 3}
+  m_PrefabInstance: {fileID: 959035009}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &959035009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1643,6 +1658,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2862cf404594643edb6f0d55855b0d0f, type: 3}
+--- !u!114 &1293004091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1417180442146836630, guid: f9e977665c5254089a5a5a4831fbe5eb, type: 3}
+  m_PrefabInstance: {fileID: 959035009}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1316659431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2307,7 @@ MonoBehaviour:
   _components:
   - {fileID: 1512846341}
   - {fileID: 1512846343}
+  - {fileID: 696026656}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 0}
@@ -2615,6 +2642,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717933999}
   m_CullTransparentMesh: 1
+--- !u!114 &1749324534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7751437923910611375, guid: f9e977665c5254089a5a5a4831fbe5eb, type: 3}
+  m_PrefabInstance: {fileID: 2628080350507468943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1847285067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,6 +2988,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5942607108994121875, guid: 635da9f9db52d4bb487c598022c159d0, type: 3}
   m_PrefabInstance: {fileID: 4240698351217788038}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2039119873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1417180442146836630, guid: f9e977665c5254089a5a5a4831fbe5eb, type: 3}
+  m_PrefabInstance: {fileID: 2628080350507468943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &2049295530
 GameObject:
   m_ObjectHideFlags: 0
