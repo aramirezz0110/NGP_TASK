@@ -1,4 +1,3 @@
-using System;
 using _App.Game.Gameplay.Character.Input;
 using UnityEngine;
 
@@ -14,12 +13,12 @@ namespace _App.Game.Gameplay.Character
         
         private void OnEnable()
         {
-            _playerInputReader.OnMove += HandleMove;
+            _playerInputReader. OnMoveAction += HandleMove;
         }
 
         private void OnDisable()
         {
-            _playerInputReader.OnMove -= HandleMove;
+            _playerInputReader.OnMoveAction -= HandleMove;
         }
         
         private void HandleMove(Vector2 value)

@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 565307748431593330}
   - component: {fileID: 1908966626846738100}
-  - component: {fileID: 3844107785752349596}
   - component: {fileID: 7104762481841497620}
   - component: {fileID: 6527515865728932925}
   - component: {fileID: 5887246090305069252}
   - component: {fileID: 5771561368816326775}
-  - component: {fileID: 59323132872143501}
+  - component: {fileID: 3311969965309054094}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -96,36 +95,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3844107785752349596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2668999994949428518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!95 &7104762481841497620
 Animator:
   serializedVersion: 7
@@ -234,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_App.Game.Gameplay.Character.PlayerMovementView
   _animator: {fileID: 7104762481841497620}
-  _playerInputReader: {fileID: 59323132872143501}
---- !u!114 &59323132872143501
+  _playerInputReader: {fileID: 3311969965309054094}
+--- !u!114 &3311969965309054094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,4 +216,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82eb0f603124c9c9c7e197f2acc70c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_App.Game.Gameplay.Character.Input.PlayerInputReader
-  _movement: {fileID: 0}

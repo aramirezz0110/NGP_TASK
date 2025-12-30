@@ -1,35 +1,74 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace _App.Game.Gameplay.Character.Input
 {
-    public class PlayerInputReader : MonoBehaviour
+    public class PlayerInputReader : MonoBehaviour, PlayerInputSystemActions.IPlayerActions
     {
-        public UnityAction<Vector2> OnMove;
+        public UnityAction<Vector2> OnMoveAction;
         
-        [SerializeField] private InputActionReference _movement;
+        private PlayerInputSystemActions _playerInputSystemActions;
+
+        private void Awake()
+        {
+            _playerInputSystemActions = new PlayerInputSystemActions();
+            _playerInputSystemActions.Player.SetCallbacks(this);
+        }
 
         private void OnEnable()
         {
-            _movement.action.performed += OnMovePerformed;
-            _movement.action.canceled += OnMoveCanceled;
-        }
-        
-        private void OnDisable()
-        {
-            _movement.action.performed -= OnMovePerformed;
-            _movement.action.canceled -= OnMoveCanceled;
+            _playerInputSystemActions.Enable();
         }
 
-        private void OnMovePerformed(InputAction.CallbackContext obj)
+        private void OnDisable()
         {
-            OnMove?.Invoke(obj.ReadValue<Vector2>());
+            _playerInputSystemActions.Disable();
         }
-        
-        private void OnMoveCanceled(InputAction.CallbackContext obj)
+
+        public void OnMove(InputAction.CallbackContext context)
         {
-            OnMove?.Invoke(Vector2.zero);
+            if (context.performed)
+            {
+                OnMoveAction?.Invoke(context.ReadValue<Vector2>());
+            }
+            else if(context.canceled)
+            {
+                OnMoveAction?.Invoke(Vector2.zero);
+            }
+        }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnCrouch(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnPrevious(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnNext(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnSprint(InputAction.CallbackContext context)
+        {
         }
     }
 }
