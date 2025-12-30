@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7104762481841497620}
   - component: {fileID: 6527515865728932925}
   - component: {fileID: 5887246090305069252}
+  - component: {fileID: 1843539481322263209}
   - component: {fileID: 5771561368816326775}
   - component: {fileID: 3311969965309054094}
   m_Layer: 0
@@ -190,6 +191,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1843539481322263209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2668999994949428518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695640dd9a7d495bbed8862d8070dea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_App.Game.Gameplay.Character.PlayerMovement
+  _rigidbody: {fileID: 5887246090305069252}
+  _playerInputReader: {fileID: 3311969965309054094}
+  _playerMovementView: {fileID: 5771561368816326775}
+  _speed: 4
 --- !u!114 &5771561368816326775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_App.Game.Gameplay.Character.PlayerMovementView
   _animator: {fileID: 7104762481841497620}
-  _playerInputReader: {fileID: 3311969965309054094}
 --- !u!114 &3311969965309054094
 MonoBehaviour:
   m_ObjectHideFlags: 0

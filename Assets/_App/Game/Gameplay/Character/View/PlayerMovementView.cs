@@ -5,26 +5,48 @@ namespace _App.Game.Gameplay.Character
 {
     public class PlayerMovementView : MonoBehaviour
     {
-        private readonly int xMovementKey = Animator.StringToHash("xMovement");
-        private readonly int yMovementKey = Animator.StringToHash("yMovement");
+        private readonly int X_MOVEMENT_KEY = Animator.StringToHash("xMovement");
+        private readonly int Y_MOVEMENT_KEY = Animator.StringToHash("yMovement");
+        private const string LAYER_IDLE = "Idle";
+        private const string LAYER_WALK = "Walk";
+        private const int MAX_LAYER_WEIGHT = 1;
+        private const int MIN_LAYER_WEIGHT = 0;
         
         [SerializeField] private Animator _animator;
-        [SerializeField] private PlayerInputReader _playerInputReader;
+
         
-        private void OnEnable()
+        public void HandleMove(bool isMoving ,Vector2 value)
         {
-            _playerInputReader. OnMoveAction += HandleMove;
+            UpdateLayers(isMoving);
+            if (!isMoving)
+            {
+                return;
+            }
+            
+            _animator.SetFloat(X_MOVEMENT_KEY, value.x);
+            _animator.SetFloat(Y_MOVEMENT_KEY, value.y);
         }
 
-        private void OnDisable()
+        private void ActivateLayer(string layerName)
         {
-            _playerInputReader.OnMoveAction -= HandleMove;
+            for (int index = 0; index< _animator.layerCount; index++)
+            {
+                _animator.SetLayerWeight(index, MIN_LAYER_WEIGHT);
+            }
+            
+            _animator.SetLayerWeight(_animator.GetLayerIndex(layerName), MAX_LAYER_WEIGHT);
         }
-        
-        private void HandleMove(Vector2 value)
+
+        private void UpdateLayers(bool value)
         {
-            _animator.SetFloat(xMovementKey, value.x);
-            _animator.SetFloat(yMovementKey, value.y);
+            if (value)
+            {
+                ActivateLayer(LAYER_WALK);
+            }
+            else
+            {
+                ActivateLayer(LAYER_IDLE);
+            }
         }
     }
 }
