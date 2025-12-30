@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _App.Game.UI.Inventory
 {
-    public class InventoryUIManager : MonoBehaviour
+    public class InGameUIManager : MonoBehaviour
     {
         [SerializeField] private GameObject _inventoryPanel;
 
