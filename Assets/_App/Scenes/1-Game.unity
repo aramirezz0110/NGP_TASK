@@ -290,7 +290,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2757235705475071179
+--- !u!1001 &1114493940
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -298,9 +298,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 59323132872143501, guid: 7b41dc2a1864d4460ba13f5beff8d495, type: 3}
+      propertyPath: _movement
+      value: 
+      objectReference: {fileID: 2098978748}
     - target: {fileID: 565307748431593330, guid: 7b41dc2a1864d4460ba13f5beff8d495, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 565307748431593330, guid: 7b41dc2a1864d4460ba13f5beff8d495, type: 3}
       propertyPath: m_LocalPosition.y
@@ -347,10 +351,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b41dc2a1864d4460ba13f5beff8d495, type: 3}
+--- !u!114 &2098978748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Move
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
+  m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 2757235705475071179}
   - {fileID: 33957986}
+  - {fileID: 1114493940}
