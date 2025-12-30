@@ -7,7 +7,7 @@ namespace _App.Game.Core.DI
     {
         public override void InstallBindings()
         {
-            Container.Bind<Inventory>().AsSingle();
+            
         }
     }
 }

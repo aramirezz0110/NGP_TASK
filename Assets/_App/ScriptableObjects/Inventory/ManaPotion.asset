@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b898bd52574ceeba7eb9e5c7cbb1a6, type: 3}
+  m_Name: ManaPotion
+  m_EditorClassIdentifier: Assembly-CSharp::_App.Game.Inventory.ItemManaPotion
+  Id: mana_potion
+  Name: Mana Potion
+  Description: Special potion that restores 20 mana points
+  Icon: {fileID: -8077459995214119482, guid: bce461e7321ac4069b8830f45f89de36, type: 3}
+  Type: 1
+  Consumable: 1
+  Stackable: 1
+  MaxStackAmount: 50
+  Amount: 0
+  ManaPointsRestauration: 20
