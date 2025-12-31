@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _App.Game.Core.SaveLoad;
 using _App.Game.Inventory;
 using BayatGames.SaveGameFree;
+using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -217,7 +218,7 @@ namespace _App.Game.UI.Inventory
             SaveGame.Save(INVENTORY_KEY, _dataSave);
         }
 
-        private void LoadInventory()
+        private async UniTask LoadInventory()
         {
             if (SaveGame.Exists(INVENTORY_KEY))
             {
@@ -232,6 +233,7 @@ namespace _App.Game.UI.Inventory
                         {
                             _inventoryItems[i] = itemStorage.DuplicateItem();
                             _inventoryItems[i].Amount = _dataLoaded.ItemsAmount[i];
+                            await UniTask.Delay(TimeSpan.FromMilliseconds(10));
                             _inventoryUI.DrawItemOnInventory(_inventoryItems[i], _inventoryItems[i].Amount, i);
                         }
                     }

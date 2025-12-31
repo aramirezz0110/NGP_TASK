@@ -82,9 +82,6 @@ namespace _App.Game.UI.Inventory
 
         public void DrawItemOnInventory(InventoryItem itemToAdd, int amount, int itemIndex)
         {
-            Debug.Log($"item index {itemIndex}");
-            
-            
             InventorySlot slot = _availableSlots[itemIndex];
 
             if (itemToAdd is not null)
