@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using _App.Game.Core.SaveLoad;
 using _App.Game.Inventory;
+using BayatGames.SaveGameFree;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -9,18 +12,25 @@ namespace _App.Game.UI.Inventory
 {
     public class Inventory : MonoBehaviour
     {
+        private const string INVENTORY_KEY = "InventorySaving2026";
+        
         public int SlotsNumber => _slotsNumber;
         public InventoryItem[] InventoryItems => _inventoryItems;
         
         [SerializeField] private int _slotsNumber = 24;
         [Header("Items")]
+        [SerializeField] private InventoryStorage _inventoryStorage;
         [SerializeField] private InventoryItem[] _inventoryItems;
+        [SerializeField] private InventoryData _dataSave;
+        [SerializeField] private InventoryData _dataLoaded; 
         
         [Inject] private InventoryUI _inventoryUI;
 
         private void Start()
         {
             _inventoryItems = new InventoryItem[_slotsNumber];
+            Debug.Log($"items {_inventoryItems.Length} / slot {_slotsNumber}");
+            LoadInventory();
         }
 
         private void OnEnable()
@@ -70,6 +80,7 @@ namespace _App.Game.UI.Inventory
             {
                 _inventoryUI.DrawItemOnInventory(_inventoryItems[index], _inventoryItems[index].Amount, index);
             }
+            SaveInventory();
         }
 
         private void RemoveItem(int index)
@@ -83,6 +94,8 @@ namespace _App.Game.UI.Inventory
             _inventoryItems[index].Amount = 0;
             _inventoryItems[index] = null;
             _inventoryUI.DrawItemOnInventory(null, 0, index);
+            
+            SaveInventory();
         }
 
         public void AddItem(InventoryItem itemToAdd, int amountToAdd)
@@ -131,6 +144,8 @@ namespace _App.Game.UI.Inventory
             {
                 AddItemInAvailableSlot(itemToAdd, amountToAdd);
             }
+            
+            SaveInventory();
         }
 
         private List<int> CheckStock(string itemId)
@@ -163,5 +178,71 @@ namespace _App.Game.UI.Inventory
                 }
             }
         }
+
+        private InventoryItem ItemExistsOnStorage(string itemId)
+        {
+            for (int i = 0; i < _inventoryStorage.Items.Length; i++)
+            {
+                if (_inventoryStorage.Items[i].Id == itemId)
+                {
+                    return _inventoryStorage.Items[i];
+                }
+            }
+
+            return null;
+        }
+
+        #region Saving
+
+        private void SaveInventory()
+        {
+            _dataSave = new InventoryData();
+            _dataSave.ItemsData = new string[_slotsNumber];
+            _dataSave.ItemsAmount = new int[_slotsNumber];
+
+            for (int i = 0; i < _slotsNumber; i++)
+            {
+                if (_inventoryItems[i] is null || string.IsNullOrEmpty(_inventoryItems[i].Id))
+                {
+                    _dataSave.ItemsData[i] = null;
+                    _dataSave.ItemsAmount[i] = 0;
+                }
+                else
+                {
+                    _dataSave.ItemsData[i] = _inventoryItems[i].Id;
+                    _dataSave.ItemsAmount[i] = _inventoryItems[i].Amount;
+                }
+            }
+            
+            SaveGame.Save(INVENTORY_KEY, _dataSave);
+        }
+
+        private void LoadInventory()
+        {
+            if (SaveGame.Exists(INVENTORY_KEY))
+            {
+                _dataLoaded = SaveGame.Load<InventoryData>(INVENTORY_KEY);
+                Debug.Log($"data loaded: {_dataLoaded.ItemsAmount.Length} {_dataLoaded.ItemsData.Length}");
+                for (int i = 0; i < _slotsNumber; i++)
+                {
+                    if (_dataLoaded.ItemsData[i] is not null)
+                    {
+                        InventoryItem itemStorage = ItemExistsOnStorage(_dataLoaded.ItemsData[i]);
+                        if (itemStorage is not null)
+                        {
+                            _inventoryItems[i] = itemStorage.DuplicateItem();
+                            _inventoryItems[i].Amount = _dataLoaded.ItemsAmount[i];
+                            _inventoryUI.DrawItemOnInventory(_inventoryItems[i], _inventoryItems[i].Amount, i);
+                        }
+                    }
+                    else
+                    {
+                        _inventoryItems[i] = null;
+                    }
+                }
+            }
+        }
+
+        #endregion
     }
 }

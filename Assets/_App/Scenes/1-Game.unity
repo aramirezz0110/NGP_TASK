@@ -2741,6 +2741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_App.Game.UI.Inventory.Inventory
   _slotsNumber: 24
+  _inventoryStorage: {fileID: 11400000, guid: 213b90d0292c84f40be8c2ea5e91585c, type: 2}
   _inventoryItems: []
 --- !u!114 &1512846342
 MonoBehaviour:

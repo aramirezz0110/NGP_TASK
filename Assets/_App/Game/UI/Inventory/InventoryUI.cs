@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _App.Game.Gameplay.Character.Stats;
 using _App.Game.Inventory;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -81,16 +82,19 @@ namespace _App.Game.UI.Inventory
 
         public void DrawItemOnInventory(InventoryItem itemToAdd, int amount, int itemIndex)
         {
+            Debug.Log($"item index {itemIndex}");
+            
+            
             InventorySlot slot = _availableSlots[itemIndex];
 
             if (itemToAdd is not null)
             {
-                slot.ActivateSlotUI(true);
-                slot.UpdateSlot(itemToAdd, amount);
+                slot?.ActivateSlotUI(true);
+                slot?.UpdateSlot(itemToAdd, amount);
             }
             else
             {
-                slot.ActivateSlotUI(false);
+                slot?.ActivateSlotUI(false);
             }
         }
 
@@ -116,13 +120,15 @@ namespace _App.Game.UI.Inventory
             }
         }
 
-        private void UpdateSelectedSlot()
+        private async UniTask UpdateSelectedSlot()
         {
             GameObject gameObjectSelected = EventSystem.current.currentSelectedGameObject;
             if (gameObjectSelected is null)
             {
                 return;
             }
+
+            await UniTask.Delay(TimeSpan.FromMilliseconds(10));
 
             InventorySlot slot = gameObjectSelected.GetComponent<InventorySlot>();
             if (slot is not null)
