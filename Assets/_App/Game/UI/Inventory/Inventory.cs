@@ -35,11 +35,12 @@ namespace _App.Game.UI.Inventory
 
         private void SlotInteractionResponse(InteractionType interactionType, int index)
         {
+            Debug.Log($"interaction type: {interactionType}");
             switch (interactionType)
             {
                 case InteractionType.Use: UseItem(index); break;
                 case InteractionType.Equip: break;
-                case InteractionType.Remove: break;
+                case InteractionType.Remove:RemoveItem(index); break;
             }
         }
 
@@ -69,6 +70,19 @@ namespace _App.Game.UI.Inventory
             {
                 _inventoryUI.DrawItemOnInventory(_inventoryItems[index], _inventoryItems[index].Amount, index);
             }
+        }
+
+        private void RemoveItem(int index)
+        {
+            Debug.Log("Removing item");
+            if (_inventoryItems[index] is null)
+            {
+                return;
+            }
+            
+            _inventoryItems[index].Amount = 0;
+            _inventoryItems[index] = null;
+            _inventoryUI.DrawItemOnInventory(null, 0, index);
         }
 
         public void AddItem(InventoryItem itemToAdd, int amountToAdd)

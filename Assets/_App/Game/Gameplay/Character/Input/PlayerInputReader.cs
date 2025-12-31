@@ -29,14 +29,6 @@ namespace _App.Game.Gameplay.Character.Input
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            // if (context.performed)
-            // {
-            //     OnMoveAction?.Invoke(context.ReadValue<Vector2>());
-            // }
-            // else if(context.canceled)
-            // {
-            //     OnMoveAction?.Invoke(Vector2.zero);
-            // }
             OnMoveAction?.Invoke(context.ReadValue<Vector2>());
         }
 

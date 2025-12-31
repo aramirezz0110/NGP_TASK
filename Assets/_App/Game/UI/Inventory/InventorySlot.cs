@@ -51,6 +51,14 @@ namespace _App.Game.UI.Inventory
             }
         }
 
+        public void RemoveItemSlot()
+        {
+            if (_inventory.InventoryItems[Index] is not null)
+            {
+                EventSlotInteraction?.Invoke(InteractionType.Remove, Index);
+            }
+        }
+
         public void SelectSlot()
         {
             _button.Select();

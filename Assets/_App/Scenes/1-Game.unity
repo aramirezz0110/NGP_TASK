@@ -1383,6 +1383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PotionHealth
       objectReference: {fileID: 0}
+    - target: {fileID: 3524096369400678729, guid: 6b8467fc609604e45aafcc5b2974ef72, type: 3}
+      propertyPath: _amountToBeAdded
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1748,6 +1752,34 @@ PrefabInstance:
     - target: {fileID: 4233163810293031125, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
       propertyPath: m_Name
       value: Remove_ChoiceBoxButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672153853613434256, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672153853613434256, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672153853613434256, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1512846343}
+    - target: {fileID: 7672153853613434256, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672153853613434256, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DeleteItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672153853613434256, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _App.Game.UI.Inventory.InventoryUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672153853613434256, guid: 8b55cd1c0314b437294ea4380bc13cda, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3345,7 +3377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524096369400678729, guid: 6b611d67bfbb94d5ead7e02a217e88bd, type: 3}
       propertyPath: _amountToBeAdded
-      value: 30
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

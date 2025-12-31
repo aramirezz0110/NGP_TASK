@@ -21,15 +21,14 @@ namespace _App.Game.UI.Inventory
         [Header("References")]
         [SerializeField] private InventorySlot _slotPrefab;
         [SerializeField] private Transform _slotParent;
-
-        //[SerializeField] private CharacterHealth _characterHealth;
-        //[SerializeField] private CharacterMana _characterMana;
         
         [Inject] private Inventory _inventory;
         
-        private List<InventorySlot> _availableSlots = new List<InventorySlot>();
         public InventorySlot SelectedSlot { get; private set; }
-
+        public int InitialIndexToMove { get; private set; }
+        
+        private List<InventorySlot> _availableSlots = new List<InventorySlot>();
+            
         public void UseItem()
         {
             if (SelectedSlot is not null)
@@ -39,14 +38,25 @@ namespace _App.Game.UI.Inventory
             }
         }
 
+        public void DeleteItem()
+        {
+            if (SelectedSlot is not null)
+            {
+                SelectedSlot.RemoveItemSlot();
+                SelectedSlot.SelectSlot();
+            }
+        }
+
         private void Start()
         {
             InitializeInventory();
+            InitialIndexToMove = -1;
         }
 
         private void Update()
         {
             UpdateSelectedSlot();
+            
         }
 
         private void OnEnable()
