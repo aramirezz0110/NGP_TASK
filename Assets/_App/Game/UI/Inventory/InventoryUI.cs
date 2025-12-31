@@ -35,6 +35,7 @@ namespace _App.Game.UI.Inventory
             if (SelectedSlot is not null)
             {
                 SelectedSlot.UseItemSlot();
+                SelectedSlot.SelectSlot();
             }
         }
 

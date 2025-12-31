@@ -11,6 +11,7 @@ namespace _App.Game.Gameplay.Character.Stats
         [SerializeField] private float _regenerationBySecond;
 
         public float CurrentMana { get; private set; }
+        public bool CanBeRestored => CurrentMana < _maxMana;
         
         [Inject] private InGameUIManager _uiManager;
         
@@ -30,6 +31,21 @@ namespace _App.Game.Gameplay.Character.Stats
                 CurrentMana -= amount;
                 UpdateManaBar();
             }
+        }
+
+        public void RestoreMana(float amount)
+        {
+            if (CurrentMana >= _maxMana)
+            {
+                return;
+            }
+            
+            CurrentMana+= amount;
+            if (CurrentMana > _maxMana)
+            {
+                CurrentMana = _maxMana;
+            }
+            _uiManager.UpdateCharacterMana(CurrentMana, _maxMana);
         }
 
         private void UpdateManaBar()

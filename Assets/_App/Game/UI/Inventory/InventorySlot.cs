@@ -1,3 +1,4 @@
+using System;
 using _App.Game.Inventory;
 using TMPro;
 using UnityEngine;
@@ -10,7 +11,6 @@ namespace _App.Game.UI.Inventory
     public class InventorySlot : MonoBehaviour
     {
         public static UnityAction<InteractionType, int> EventSlotInteraction;
-        
         public int Index { get; set; }
 
         [SerializeField] private Image _iconItem;
@@ -18,6 +18,13 @@ namespace _App.Game.UI.Inventory
         [SerializeField] private TMP_Text _amountText;
         
         [Inject] private Inventory _inventory;
+        
+        private Button _button;
+
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+        }
 
         public void UpdateSlot(InventoryItem item, int amount)
         {
@@ -42,6 +49,11 @@ namespace _App.Game.UI.Inventory
             {
                 EventSlotInteraction?.Invoke(InteractionType.Use, Index);
             }
+        }
+
+        public void SelectSlot()
+        {
+            _button.Select();
         }
     }
 
