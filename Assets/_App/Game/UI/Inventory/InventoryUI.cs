@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using _App.Game.Gameplay.Character.Stats;
 using _App.Game.Inventory;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
@@ -19,16 +21,33 @@ namespace _App.Game.UI.Inventory
         [Header("References")]
         [SerializeField] private InventorySlot _slotPrefab;
         [SerializeField] private Transform _slotParent;
+
+        //[SerializeField] private CharacterHealth _characterHealth;
+        //[SerializeField] private CharacterMana _characterMana;
         
         [Inject] private Inventory _inventory;
         
         private List<InventorySlot> _availableSlots = new List<InventorySlot>();
+        public InventorySlot SelectedSlot { get; private set; }
+
+        public void UseItem()
+        {
+            if (SelectedSlot is not null)
+            {
+                SelectedSlot.UseItemSlot();
+            }
+        }
 
         private void Start()
         {
             InitializeInventory();
         }
-        
+
+        private void Update()
+        {
+            UpdateSelectedSlot();
+        }
+
         private void OnEnable()
         {
             InventorySlot.EventSlotInteraction += SlotInteractionResponse;
@@ -83,6 +102,21 @@ namespace _App.Game.UI.Inventory
             if (interactionType == InteractionType.Click)
             {
                 UpdateInventoryDescription(index);
+            }
+        }
+
+        private void UpdateSelectedSlot()
+        {
+            GameObject gameObjectSelected = EventSystem.current.currentSelectedGameObject;
+            if (gameObjectSelected is null)
+            {
+                return;
+            }
+
+            InventorySlot slot = gameObjectSelected.GetComponent<InventorySlot>();
+            if (slot is not null)
+            {
+                SelectedSlot = slot;
             }
         }
     }

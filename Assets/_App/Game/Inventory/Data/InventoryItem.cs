@@ -25,6 +25,21 @@ namespace _App.Game.Inventory
         {
             return Instantiate(this);
         }
+
+        public virtual bool UseItem()
+        {
+            return true;
+        }
+
+        public virtual bool EquipItem()
+        {
+            return true;
+        }
+
+        public virtual bool RemoveItem()
+        {
+            return true;
+        }
     }
 
     public enum ItemType

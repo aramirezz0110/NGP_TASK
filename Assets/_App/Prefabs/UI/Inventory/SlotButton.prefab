@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 2831524323349920339}
   - component: {fileID: 566665709787937258}
   - component: {fileID: 666258509045829891}
+  - component: {fileID: 7506573356615995257}
   m_Layer: 5
   m_Name: SlotButton
   m_TagString: Untagged
@@ -363,6 +364,19 @@ MonoBehaviour:
   _iconItem: {fileID: 6711053443757938322}
   _backgroundAmount: {fileID: 1051922025658754281}
   _amountText: {fileID: 1378338194955343908}
+--- !u!114 &7506573356615995257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271415916243161627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Zenject::Zenject.ZenAutoInjecter
+  _containerSource: 2
 --- !u!1 &3874898710954507393
 GameObject:
   m_ObjectHideFlags: 0

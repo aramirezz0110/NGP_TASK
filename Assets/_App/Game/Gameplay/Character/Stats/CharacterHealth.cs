@@ -1,4 +1,5 @@
 using _App.Game.UI.Inventory;
+using UnityEngine;
 using Zenject;
 
 namespace _App.Game.Gameplay.Character.Stats

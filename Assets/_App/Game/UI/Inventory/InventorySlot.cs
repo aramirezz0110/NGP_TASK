@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 namespace _App.Game.UI.Inventory
 {
@@ -15,6 +16,8 @@ namespace _App.Game.UI.Inventory
         [SerializeField] private Image _iconItem;
         [SerializeField] private GameObject _backgroundAmount;
         [SerializeField] private TMP_Text _amountText;
+        
+        [Inject] private Inventory _inventory;
 
         public void UpdateSlot(InventoryItem item, int amount)
         {
@@ -31,6 +34,14 @@ namespace _App.Game.UI.Inventory
         public void ClickSlot()
         {
             EventSlotInteraction?.Invoke(InteractionType.Click, Index);
+        }
+
+        public void UseItemSlot()
+        {
+            if (_inventory.InventoryItems[Index] is not null)
+            {
+                EventSlotInteraction?.Invoke(InteractionType.Use, Index);
+            }
         }
     }
 

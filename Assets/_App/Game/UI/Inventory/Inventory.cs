@@ -9,11 +9,10 @@ namespace _App.Game.UI.Inventory
 {
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private int _slotsNumber = 24;
         public int SlotsNumber => _slotsNumber;
         public InventoryItem[] InventoryItems => _inventoryItems;
         
-        [FormerlySerializedAs("_itemsInventory")]
+        [SerializeField] private int _slotsNumber = 24;
         [Header("Items")]
         [SerializeField] private InventoryItem[] _inventoryItems;
         
@@ -22,6 +21,54 @@ namespace _App.Game.UI.Inventory
         private void Start()
         {
             _inventoryItems = new InventoryItem[_slotsNumber];
+        }
+
+        private void OnEnable()
+        {
+            InventorySlot.EventSlotInteraction += SlotInteractionResponse;
+        }
+
+        private void OnDisable()
+        {
+            InventorySlot.EventSlotInteraction -= SlotInteractionResponse;
+        }
+
+        private void SlotInteractionResponse(InteractionType interactionType, int index)
+        {
+            switch (interactionType)
+            {
+                case InteractionType.Use: UseItem(index); break;
+                case InteractionType.Equip: break;
+                case InteractionType.Remove: break;
+            }
+        }
+
+        private void UseItem(int index)
+        {
+            if (_inventoryItems[index] is null)
+            {
+                return;
+            }
+
+            if (_inventoryItems[index].UseItem())
+            {
+                DeleteItem(index);
+            }
+        }
+
+        private void DeleteItem(int index)
+        {
+            InventoryItems[index].Amount--;
+            if (_inventoryItems[index].Amount <= 0)
+            {
+                _inventoryItems[index].Amount = 0;
+                _inventoryItems[index] = null;
+                _inventoryUI.DrawItemOnInventory(null, 0, index);
+            }
+            else
+            {
+                _inventoryUI.DrawItemOnInventory(_inventoryItems[index], _inventoryItems[index].Amount, index);
+            }
         }
 
         public void AddItem(InventoryItem itemToAdd, int amountToAdd)
